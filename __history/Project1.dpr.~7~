@@ -1,0 +1,20 @@
+program Project1;
+
+uses
+  Vcl.Forms,
+  view.principal in 'src\views\view.principal.pas' {ViewPrincipal},
+  service.base in 'src\services\service.base.pas' {ServiceBase: TDataModule},
+  service.conexao in 'src\services\service.conexao.pas' {ServiceConexao: TDataModule},
+  service.cadastro in 'src\services\service.cadastro.pas' {ServiceFilial: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TViewPrincipal, ViewPrincipal);
+  Application.CreateForm(TServiceBase, ServiceBase);
+  Application.CreateForm(TServiceConexao, ServiceConexao);
+  Application.CreateForm(TServiceFilial, ServiceFilial);
+  Application.Run;
+end.

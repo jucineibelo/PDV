@@ -1,0 +1,46 @@
+inherited ServiceConexao1: TServiceConexao1
+  Width = 648
+  inherited FDConn: TFDConnection
+    Connected = True
+  end
+  object qryFilial: TFDQuery
+    Connection = FDConn
+    SQL.Strings = (
+      'select * from filial where id = :id ')
+    Left = 240
+    Top = 48
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qryFilialID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryFilialRAZAO: TStringField
+      FieldName = 'RAZAO'
+      Origin = 'RAZAO'
+      Size = 100
+    end
+    object qryFilialFANTASIA: TStringField
+      FieldName = 'FANTASIA'
+      Origin = 'FANTASIA'
+      Size = 100
+    end
+    object qryFilialCNPJ: TStringField
+      FieldName = 'CNPJ'
+      Origin = 'CNPJ'
+      Size = 30
+    end
+    object qryFilialTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Origin = 'TELEFONE'
+      Size = 30
+    end
+  end
+end

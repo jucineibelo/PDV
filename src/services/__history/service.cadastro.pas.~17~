@@ -1,0 +1,115 @@
+unit service.cadastro;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  service.conexao,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.FB,
+  FireDAC.Phys.FBDef,
+  FireDAC.VCLUI.Wait,
+  FireDAC.Phys.IBBase,
+  FireDAC.Comp.UI,
+  Data.DB,
+  FireDAC.Comp.Client,
+  FireDAC.Stan.Param,
+  FireDAC.DatS,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  FireDAC.Comp.DataSet;
+
+type
+  TServiceCadastro = class(TServiceConexao)
+    qryFilial: TFDQuery;
+    qryFilialID: TIntegerField;
+    qryFilialRAZAO: TStringField;
+    qryFilialFANTASIA: TStringField;
+    qryFilialCNPJ: TStringField;
+    qryFilialTELEFONE: TStringField;
+    qryAbreCaixa: TFDQuery;
+    qryAbreCaixaID: TIntegerField;
+    qryAbreCaixaDATA_ABERTURA: TDateField;
+    qryAbreCaixaHORA_ABERTURA: TTimeField;
+    qryAbreCaixaDATA_FECHAMENTO: TDateField;
+    qryAbreCaixaHORA_FECHAMENTO: TTimeField;
+    qryAbreCaixaVALOR_INICIAL: TFMTBCDField;
+    qryAbreCaixaVALOR_FINAL: TFMTBCDField;
+    qryAbreCaixaID_USUARIO: TIntegerField;
+    qryAbreCaixaSTATUS: TStringField;
+    qryAbreCaixaOBS: TStringField;
+    qryProdutos: TFDQuery;
+    qryProdutosNOME_PRODUTO: TStringField;
+    qryProdutosCODIGO_BARRA: TStringField;
+    qryProdutosVENDA_AVISTA: TFMTBCDField;
+    qryProdutosVENDA_APRAZO: TFMTBCDField;
+    qryVendas: TFDQuery;
+    qryVendaItens: TFDQuery;
+    qryVendasID: TIntegerField;
+    qryVendasTIPO: TIntegerField;
+    qryVendasVENDEDOR: TIntegerField;
+    qryVendasID_CLIENTE: TIntegerField;
+    qryVendasDATA_: TDateField;
+    qryVendasHORA: TTimeField;
+    qryVendasDESCONTO: TFMTBCDField;
+    qryVendasVLR_TOTAL: TFMTBCDField;
+    qryVendaItensID: TIntegerField;
+    qryVendaItensID_ESTOQUE: TIntegerField;
+    qryVendaItensID_PRODUTO: TIntegerField;
+    qryVendaItensQTDE: TFMTBCDField;
+    qryVendaItensVALOR_UNITARIO: TFMTBCDField;
+    qryVendaItensDESCONTO: TFMTBCDField;
+    qryVendaItensVALOR_TOTAL: TFMTBCDField;
+    qryProdutosID: TIntegerField;
+  private
+    { Private declarations }
+  public
+    procedure GetProdutos(AValue: string);
+    procedure GetFilial(AValue: Integer);
+  end;
+
+var
+  ServiceCadastro: TServiceCadastro;
+
+implementation
+
+uses
+
+  Vcl.Dialogs;
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TServiceCadastro }
+
+procedure TServiceCadastro.GetFilial(AValue: Integer);
+begin
+  qryFilial.Close;
+  qryFilial.Params[0].AsString := AValue;
+end;
+
+procedure TServiceCadastro.GetProdutos(AValue: string);
+begin     //buscar produto pelo cód de barras
+  qryProdutos.Close;
+  qryProdutos.Params[0].AsString := AValue;
+  qryProdutos.Open();
+
+  if qryProdutos.RecordCount < 1 then
+  begin
+    ShowMessage('Produto não encontrado.');
+    Abort;
+  end;
+
+end;
+
+end.

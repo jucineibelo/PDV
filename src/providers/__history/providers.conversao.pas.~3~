@@ -1,0 +1,16 @@
+unit providers.conversao;
+
+interface
+
+type
+  TipoEstoque = (TipoCompra, TipoVenda, TipoDevolucao);
+  function EstoqueToStr(const T: TipoEstoque): Integer;
+
+implementation
+
+function EstoqueToStr(const T: TipoEstoque): Integer;
+begin
+
+end;
+
+end.

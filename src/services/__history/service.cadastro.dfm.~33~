@@ -1,0 +1,396 @@
+inherited ServiceCadastro: TServiceCadastro
+  Width = 648
+  inherited FDConn: TFDConnection
+    Connected = True
+    Left = 66
+  end
+  inherited FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Left = 66
+  end
+  inherited FDPhysFBDriverLink1: TFDPhysFBDriverLink
+    Left = 66
+  end
+  object qryFilial: TFDQuery
+    Connection = FDConn
+    SQL.Strings = (
+      'select * from filial where id = :id ')
+    Left = 211
+    Top = 48
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qryFilialID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryFilialRAZAO: TStringField
+      FieldName = 'RAZAO'
+      Origin = 'RAZAO'
+      Size = 100
+    end
+    object qryFilialFANTASIA: TStringField
+      FieldName = 'FANTASIA'
+      Origin = 'FANTASIA'
+      Size = 100
+    end
+    object qryFilialCNPJ: TStringField
+      FieldName = 'CNPJ'
+      Origin = 'CNPJ'
+      Size = 30
+    end
+    object qryFilialTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Origin = 'TELEFONE'
+      Size = 30
+    end
+  end
+  object qryAbreCaixa: TFDQuery
+    Connection = FDConn
+    SQL.Strings = (
+      'select '
+      '      * '
+      'from abre_caixa '
+      'where status = '#39'ABERTO'#39' '
+      'order by id desc')
+    Left = 211
+    Top = 120
+    object qryAbreCaixaID: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryAbreCaixaDATA_ABERTURA: TDateField
+      FieldName = 'DATA_ABERTURA'
+      Origin = 'DATA_ABERTURA'
+    end
+    object qryAbreCaixaHORA_ABERTURA: TTimeField
+      FieldName = 'HORA_ABERTURA'
+      Origin = 'HORA_ABERTURA'
+    end
+    object qryAbreCaixaDATA_FECHAMENTO: TDateField
+      FieldName = 'DATA_FECHAMENTO'
+      Origin = 'DATA_FECHAMENTO'
+    end
+    object qryAbreCaixaHORA_FECHAMENTO: TTimeField
+      FieldName = 'HORA_FECHAMENTO'
+      Origin = 'HORA_FECHAMENTO'
+    end
+    object qryAbreCaixaVALOR_INICIAL: TFMTBCDField
+      FieldName = 'VALOR_INICIAL'
+      Origin = 'VALOR_INICIAL'
+      Precision = 18
+      Size = 2
+    end
+    object qryAbreCaixaVALOR_FINAL: TFMTBCDField
+      FieldName = 'VALOR_FINAL'
+      Origin = 'VALOR_FINAL'
+      Precision = 18
+      Size = 2
+    end
+    object qryAbreCaixaID_USUARIO: TIntegerField
+      FieldName = 'ID_USUARIO'
+      Origin = 'ID_USUARIO'
+    end
+    object qryAbreCaixaSTATUS: TStringField
+      FieldName = 'STATUS'
+      Origin = 'STATUS'
+    end
+    object qryAbreCaixaOBS: TStringField
+      FieldName = 'OBS'
+      Origin = 'OBS'
+      Size = 200
+    end
+  end
+  object qryProdutos: TFDQuery
+    Connection = FDConn
+    SQL.Strings = (
+      'select'
+      '    p.id,'
+      '    p.nome_produto,'
+      '    p.codigo_barra,'
+      '    pd.venda_avista,'
+      '    pd.venda_aprazo'
+      'from produtos p'
+      'inner join produtos_detalhes pd on (pd.id_produto = p.id)'
+      'where p.codigo_barra = :codbarra')
+    Left = 211
+    Top = 192
+    ParamData = <
+      item
+        Name = 'CODBARRA'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+        Value = Null
+      end>
+    object qryProdutosID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryProdutosNOME_PRODUTO: TStringField
+      FieldName = 'NOME_PRODUTO'
+      Origin = 'NOME_PRODUTO'
+      Size = 100
+    end
+    object qryProdutosCODIGO_BARRA: TStringField
+      FieldName = 'CODIGO_BARRA'
+      Origin = 'CODIGO_BARRA'
+      Size = 50
+    end
+    object qryProdutosVENDA_AVISTA: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'VENDA_AVISTA'
+      Origin = 'VENDA_AVISTA'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 18
+      Size = 2
+    end
+    object qryProdutosVENDA_APRAZO: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'VENDA_APRAZO'
+      Origin = 'VENDA_APRAZO'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 18
+      Size = 2
+    end
+  end
+  object qryVendas: TFDQuery
+    Active = True
+    Connection = FDConn
+    SQL.Strings = (
+      'select * from estoque where id = :id')
+    Left = 339
+    Top = 48
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qryVendasID: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryVendasTIPO: TIntegerField
+      FieldName = 'TIPO'
+      Origin = 'TIPO'
+    end
+    object qryVendasVENDEDOR: TIntegerField
+      FieldName = 'VENDEDOR'
+      Origin = 'VENDEDOR'
+    end
+    object qryVendasID_CLIENTE: TIntegerField
+      FieldName = 'ID_CLIENTE'
+      Origin = 'ID_CLIENTE'
+    end
+    object qryVendasDATA_: TDateField
+      FieldName = 'DATA_'
+      Origin = 'DATA_'
+    end
+    object qryVendasHORA: TTimeField
+      FieldName = 'HORA'
+      Origin = 'HORA'
+    end
+    object qryVendasDESCONTO: TFMTBCDField
+      FieldName = 'DESCONTO'
+      Origin = 'DESCONTO'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+    object qryVendasVLR_TOTAL: TFMTBCDField
+      FieldName = 'VLR_TOTAL'
+      Origin = 'VLR_TOTAL'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+  end
+  object qryVendaItens: TFDQuery
+    Connection = FDConn
+    SQL.Strings = (
+      '        select * from estoque_item where id = :id')
+    Left = 339
+    Top = 120
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qryVendaItensID: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryVendaItensID_ESTOQUE: TIntegerField
+      FieldName = 'ID_ESTOQUE'
+      Origin = 'ID_ESTOQUE'
+    end
+    object qryVendaItensID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+      Origin = 'ID_PRODUTO'
+    end
+    object qryVendaItensQTDE: TFMTBCDField
+      FieldName = 'QTDE'
+      Origin = 'QTDE'
+      Precision = 18
+      Size = 2
+    end
+    object qryVendaItensVALOR_UNITARIO: TFMTBCDField
+      FieldName = 'VALOR_UNITARIO'
+      Origin = 'VALOR_UNITARIO'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+    object qryVendaItensDESCONTO: TFMTBCDField
+      FieldName = 'DESCONTO'
+      Origin = 'DESCONTO'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+    object qryVendaItensVALOR_TOTAL: TFMTBCDField
+      FieldName = 'VALOR_TOTAL'
+      Origin = 'VALOR_TOTAL'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+  end
+  object qryFormaPgto: TFDQuery
+    Active = True
+    Connection = FDConn
+    SQL.Strings = (
+      'select * from formas_pagamento')
+    Left = 339
+    Top = 192
+    object qryFormaPgtoID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryFormaPgtoDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Size = 100
+    end
+    object qryFormaPgtoGERA_RECEBER: TStringField
+      FieldName = 'GERA_RECEBER'
+      Origin = 'GERA_RECEBER'
+      Size = 10
+    end
+  end
+  object qryCaixa: TFDQuery
+    Connection = FDConn
+    SQL.Strings = (
+      'select * from caixa where id = :id')
+    Left = 451
+    Top = 48
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qryCaixaID: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryCaixaID_ESTOQUE: TIntegerField
+      FieldName = 'ID_ESTOQUE'
+      Origin = 'ID_ESTOQUE'
+    end
+    object qryCaixaID_FORMA_PGTO: TIntegerField
+      FieldName = 'ID_FORMA_PGTO'
+      Origin = 'ID_FORMA_PGTO'
+    end
+    object qryCaixaDATA_HORA: TSQLTimeStampField
+      FieldName = 'DATA_HORA'
+      Origin = 'DATA_HORA'
+    end
+    object qryCaixaTIPO: TStringField
+      FieldName = 'TIPO'
+      Origin = 'TIPO'
+      FixedChar = True
+      Size = 1
+    end
+    object qryCaixaVALOR: TFMTBCDField
+      FieldName = 'VALOR'
+      Origin = 'VALOR'
+      Precision = 18
+      Size = 2
+    end
+    object qryCaixaDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Size = 200
+    end
+  end
+  object qryReceber: TFDQuery
+    Connection = FDConn
+    SQL.Strings = (
+      'select * from contas_receber where id = :id')
+    Left = 456
+    Top = 120
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qryReceberID: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryReceberID_CLIENTE: TIntegerField
+      FieldName = 'ID_CLIENTE'
+      Origin = 'ID_CLIENTE'
+    end
+    object qryReceberDOCUMENTO: TStringField
+      FieldName = 'DOCUMENTO'
+      Origin = 'DOCUMENTO'
+      Size = 50
+    end
+    object qryReceberVALOR: TFMTBCDField
+      FieldName = 'VALOR'
+      Origin = 'VALOR'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object qryReceberItens: TFDQuery
+    Connection = FDConn
+    Left = 456
+    Top = 192
+  end
+end

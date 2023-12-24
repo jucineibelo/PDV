@@ -1,0 +1,42 @@
+unit service.atualiza;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  FireDAC.UI.Intf,
+  FireDAC.Stan.Async,
+  FireDAC.Comp.ScriptCommands,
+  FireDAC.Stan.Util,
+  FireDAC.Stan.Intf,
+  FireDAC.Comp.Script,
+  service.conexao;
+
+type
+  TDataModule1  =  class(TDataModule)
+    FDScript1: TFDScript;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DataModule1: TDataModule1;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TDataModule1.DataModuleCreate(Sender: TObject);
+begin
+  FDScript1.ValidateAll;
+  FDScript1.ExecuteAll;
+end;
+
+end.
+

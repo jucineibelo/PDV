@@ -1,0 +1,145 @@
+unit view.base.listas;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  view.base,
+  Vcl.ExtCtrls,
+  Vcl.WinXPanels,
+  Vcl.StdCtrls,
+  Vcl.Imaging.pngimage,
+  Vcl.Buttons,
+  Data.DB,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.WinXCtrls;
+
+type
+  TviewBaseListas = class(TviewBase)
+    pnlRodape: TPanel;
+    pnlTop: TPanel;
+    pnlFundo: TPanel;
+    CardPanelConteudo: TCardPanel;
+    pnlFechar: TPanel;
+    btnSair: TSpeedButton;
+    pnllcone: TPanel;
+    imgIcone: TImage;
+    lblTitulo: TLabel;
+    cardPesquisa: TCard;
+    cardCadastro: TCard;
+    btnNovo: TSpeedButton;
+    btnEditar: TSpeedButton;
+    btnCancelar: TSpeedButton;
+    btnSalvar: TSpeedButton;
+    btnExcluir: TSpeedButton;
+    dbgGridDados: TDBGrid;
+    pnlFiltro: TPanel;
+    lblPesquisa: TLabel;
+    pnlPesquisa: TPanel;
+    edtPesquisa: TSearchBox;
+    pnlTituloCadastro: TPanel;
+    lblTituloCadastro: TLabel;
+    dsPadrao: TDataSource;
+    pnlContainerPesq: TPanel;
+    pnlBtnVoltar: TPanel;
+    btnVoltarPesquisa: TSpeedButton;
+    procedure btnSairClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnVoltarPesquisaClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure dsPadraoStateChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+
+  end;
+
+var
+  viewBaseListas: TviewBaseListas;
+
+implementation
+
+{$R *.dfm}
+
+procedure TviewBaseListas.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  CardPanelConteudo.ActiveCard := cardPesquisa;
+  dsPadrao.DataSet.Cancel;
+end;
+
+procedure TviewBaseListas.btnEditarClick(Sender: TObject);
+begin
+  inherited;
+  CardPanelConteudo.ActiveCard := cardCadastro;
+  dsPadrao.DataSet.Edit;
+end;
+
+procedure TviewBaseListas.btnExcluirClick(Sender: TObject);
+begin
+  inherited;
+  dsPadrao.DataSet.Delete;
+end;
+
+procedure TviewBaseListas.btnNovoClick(Sender: TObject);
+begin
+  inherited;
+  CardPanelConteudo.ActiveCard := cardCadastro;
+  dsPadrao.DataSet.Insert;
+end;
+
+procedure TviewBaseListas.btnSairClick(Sender: TObject);
+begin
+  inherited;
+  Self.Close;
+end;
+
+procedure TviewBaseListas.btnSalvarClick(Sender: TObject);
+begin
+  inherited;
+  dsPadrao.DataSet.Post;
+  CardPanelConteudo.ActiveCard := cardPesquisa;
+end;
+
+procedure TviewBaseListas.btnVoltarPesquisaClick(Sender: TObject);
+begin
+  inherited;
+  CardPanelConteudo.ActiveCard := cardPesquisa;
+end;
+
+procedure TviewBaseListas.dsPadraoStateChange(Sender: TObject);
+begin
+  inherited;
+  btnNovo.Enabled           := not (dsPadrao.State in [dsInsert, dsEdit]);
+  btnEditar.Enabled         := btnNovo.Enabled and (dsPadrao.DataSet.RecordCount > 0);
+  btnSalvar.Enabled         := dsPadrao.State in [dsInsert, dsEdit];
+  btnCancelar.Enabled       := btnSalvar.Enabled;
+end;
+
+procedure TviewBaseListas.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  FreeAndNil(FService.DisposeOf); //destruir a conexão ao fechar o form de todos os forms que herdar
+end;
+
+procedure TviewBaseListas.FormShow(Sender: TObject);
+begin // abrir sempre em modo de pesquisa
+  inherited;
+  CardPanelConteudo.ActiveCard := cardPesquisa;
+end;
+
+end.

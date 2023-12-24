@@ -1,0 +1,29 @@
+inherited ServiceConexao: TServiceConexao
+  Height = 319
+  Width = 572
+  object FDConn: TFDConnection
+    Params.Strings = (
+      
+        'Database=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\ban' +
+        'co de dados\DADOS.FDB'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'Protocol=TCPIP'
+      'Server=localhost'
+      'Port=3050'
+      'CharacterSet=WIN1252'
+      'DriverID=FB')
+    LoginPrompt = False
+    Left = 104
+    Top = 48
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 104
+    Top = 120
+  end
+  object FDPhysFBDriverLink1: TFDPhysFBDriverLink
+    Left = 104
+    Top = 192
+  end
+end

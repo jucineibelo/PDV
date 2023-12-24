@@ -1,0 +1,165 @@
+unit providers.functions;
+
+interface    //Control + shift + A = encontrar a uses
+
+uses
+  Vcl.Forms,
+  service.cadastro,
+  Data.DB, providers.conversao;
+
+procedure GetProdutos(AValue: string);
+procedure GetFilial(AValue: Integer);
+procedure CriaForm(FormView: TForm; TFormView: TFormClass);
+procedure PutCaixa(AIdEstoque, AIdFormaPgto: Integer; ATipo, ADescricao: string; AValor: Double);
+procedure PutVenda(ADataSet: TDataSet; ATipoEstoque, AVendedor, ACliente: Integer; AValorVenda, ADesconto: Double);
+procedure PutReceber(AIdCliente: Integer; ADocumento: string; AValor: Double);
+
+implementation
+
+uses
+  view.fundo,
+  Vcl.Dialogs,
+  System.SysUtils;
+
+
+procedure CriaForm(FormView: TForm; TFormView: TFormClass);
+begin
+  FormView := TFormView.Create(Application);
+  try
+    viewFundo.Show;
+    FormView.ShowModal;
+  finally
+    viewFundo.Hide;
+    FormView.DisposeOf;
+  end;
+end;
+
+procedure GetFilial(AValue: Integer);
+const
+  SQL_FILIAL = 'select * from filial where id = :id ';
+begin
+  with ServiceCadastro.qryFilial do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add(SQL_FILIAL);
+    Params[0].AsInteger := AValue;
+    Open;
+  end;
+end;
+
+procedure GetProdutos(AValue: string);   //buscar produto pelo cód de barras
+const
+  SQL_PRODUTO =
+    ' select                                                        ' +
+    '         p.id,                                                 ' +
+    '         p.nome_produto,                                       ' +
+    '         p.codigo_barra,                                       ' +
+    '         pd.venda_avista,                                      ' +
+    '         pd.venda_aprazo                                       ' +
+    ' from produtos p                                               ' +
+    '   inner join produtos_detalhes pd on (pd.id_produto = p.id)   ' +
+    ' where p.codigo_barra = :codbarra';
+
+begin
+  with ServiceCadastro.qryProdutos do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add(SQL_PRODUTO);
+    Params[0].AsString := AValue;
+    Open();
+  end;
+
+  if ServiceCadastro.qryProdutos.RecordCount < 1 then
+  begin
+    ShowMessage('Produto não encontrado.');
+    Abort;
+  end;
+end;
+
+procedure PutCaixa(AIdEstoque, AIdFormaPgto: Integer; ATipo, ADescricao: string; AValor: Double);
+//FUNÇÃO QUE ALIMENTA OS DADOS DO CAIXA AO FECHAR UMA VENDA
+const
+  SQL_PUT_CAIXA =
+    ' INSERT INTO caixa (id_estoque,           ' +
+              ' id_forma_pgto,                 ' +
+              ' data_hora,                     ' +
+              ' tipo,                          ' +
+              ' valor,                         ' +
+              ' descricao)                     ' +
+              ' VALUES (:id,                   ' +
+              ' :idFormaPgto,                  ' +
+              ' :datahora,                     ' +
+              ' :tipo,                         ' +
+              ' :valor,                        ' +
+              ' :descricao)                    ';
+begin
+  with ServiceCadastro.qryCaixa do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add(SQL_PUT_CAIXA);
+    Params.ParamByName('id').AsInteger            := AIdEstoque;
+    Params.ParamByName('idFormaPgto').AsInteger   := AIdFormaPgto;
+    Params.ParamByName('datahora').AsDateTime     := Now;
+    Params.ParamByName('tipo').AsString           := 'E';
+    Params.ParamByName('valor').AsFloat           := AValor;
+    Params.ParamByName('descricao').AsString      := ADescricao;
+    ExecSQL;
+  end;
+end;
+
+procedure PutVenda(ADataSet: TDataSet; ATipoEstoque, AVendedor, ACliente: Integer; AValorVenda, ADesconto: Double);
+begin
+
+  ServiceCadastro.qryVendas.Close;
+  ServiceCadastro.qryVendas.Open;
+  ServiceCadastro.qryVendas.Insert;
+  ServiceCadastro.qryVendasTIPO.AsInteger       := EstoqueToStr(TipoVenda);
+  ServiceCadastro.qryVendasDATA_.AsDateTime     := Date;
+  ServiceCadastro.qryVendasHORA.AsDateTime      := Time;
+  ServiceCadastro.qryVendasDESCONTO.AsFloat     := ADesconto;
+  ServiceCadastro.qryVendasVLR_TOTAL.AsFloat    := AValorVenda;
+  ServiceCadastro.qryVendasVENDEDOR.AsInteger   := AVendedor;
+  ServiceCadastro.qryVendasID_CLIENTE.AsInteger := ACliente;
+  ServiceCadastro.qryVendas.Post;
+
+  ADataSet.First;
+  while not ADataSet.Eof do
+  begin
+    ServiceCadastro.qryVendaItens.Close;
+    ServiceCadastro.qryVendaItens.Open;
+    ServiceCadastro.qryVendaItens.Insert;
+    ServiceCadastro.qryVendaItensID_ESTOQUE.AsInteger   := ServiceCadastro.qryVendasID.AsInteger;
+    ServiceCadastro.qryVendaItensID_PRODUTO.AsInteger   := ADataSet.FieldByName('ID').AsInteger;
+    ServiceCadastro.qryVendaItensQTDE.AsFloat           := ADataSet.FieldByName('QTDE').AsFloat;
+    ServiceCadastro.qryVendaItensVALOR_UNITARIO.AsFloat := ADataSet.FieldByName('VALOR_UNIT').AsFloat;
+    ServiceCadastro.qryVendaItensVALOR_TOTAL.AsFloat    := ADataSet.FieldByName('SUB_TOTAL').AsFloat;
+    ServiceCadastro.qryVendaItensDESCONTO.AsFloat       := ADataSet.FieldByName('DESC').AsFloat;
+    ServiceCadastro.qryVendaItens.Post;
+
+    ADataSet.Next;
+  end;
+end;
+
+procedure PutReceber(AIdCliente: Integer; ADocumento: string; AValor: Double);
+begin
+  //salvando receber cabeçalho
+  ServiceCadastro.qryReceber.Close;
+  ServiceCadastro.qryReceber.Open;
+  ServiceCadastro.qryReceber.Insert;
+  ServiceCadastro.qryReceberID_CLIENTE.AsInteger := AIdCliente;
+  ServiceCadastro.qryReceberDOCUMENTO.AsString   := ADocumento;
+  ServiceCadastro.qryReceberVALOR.AsFloat        := AValor;
+  ServiceCadastro.qryReceber.Post;
+
+  //salvando receber itens
+
+  ServiceCadastro.qryReceberItens.Close;
+  ServiceCadastro.qryReceberItens.Open;
+  ServiceCadastro.qryReceber.Insert;
+
+end;
+
+end.

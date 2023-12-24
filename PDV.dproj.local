@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/11/26 20:38:45.000.937,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\Unit1.pas</Transaction>
+    <Transaction>2023/11/26 20:39:08.000.485,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.principal.dfm=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\Unit1.dfm</Transaction>
+    <Transaction>2023/11/26 20:39:08.000.485,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.principal.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\Unit1.pas</Transaction>
+    <Transaction>2023/11/26 20:39:28.000.234,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Project1.dproj=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\Project1.dproj</Transaction>
+    <Transaction>2023/11/26 23:43:19.000.045,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/11/26 23:43:39.000.966,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.dfm=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\services\service.base.dfm</Transaction>
+    <Transaction>2023/11/26 23:43:39.000.966,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\services\service.base.pas</Transaction>
+    <Transaction>2023/11/27 00:01:42.000.956,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/11/27 00:02:00.000.358,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.dfm=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\services\service.conexao.dfm</Transaction>
+    <Transaction>2023/11/27 00:02:00.000.358,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\services\service.conexao.pas</Transaction>
+    <Transaction>2023/11/27 01:04:27.000.229,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/11/27 01:10:58.000.655,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\services\service.filial.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/11/27 01:10:58.000.655,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\services\service.filial.dfm=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.dfm</Transaction>
+    <Transaction>2023/11/27 01:27:11.000.724,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\services\service.filial.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\services\service.cadastro.pas</Transaction>
+    <Transaction>2023/11/27 01:27:11.000.724,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\services\service.filial.dfm=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\services\service.cadastro.dfm</Transaction>
+    <Transaction>2023/11/27 14:44:21.000.975,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/11/27 14:44:36.000.384,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.base.dfm=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.dfm</Transaction>
+    <Transaction>2023/11/27 14:44:36.000.384,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.base.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/11/27 14:46:59.000.554,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/11/27 14:47:25.000.505,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.base.listas.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/11/27 14:47:25.000.505,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.base.listas.dfm=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.dfm</Transaction>
+    <Transaction>2023/11/27 17:54:00.000.481,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/11/27 17:54:31.000.968,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.abrirCaixa.dfm=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.dfm</Transaction>
+    <Transaction>2023/11/27 17:54:31.000.968,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.abrirCaixa.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/11/29 20:55:18.000.214,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/11/29 20:57:15.000.860,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\providers\providers.functions.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/12/02 16:24:33.000.442,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Project1.dproj=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\PDV.dproj</Transaction>
+    <Transaction>2023/12/03 23:20:28.000.998,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/12/03 23:21:17.000.753,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.formasPgto.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/12/03 23:21:17.000.753,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.formasPgto.dfm=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.dfm</Transaction>
+    <Transaction>2023/12/04 00:28:35.000.521,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/12/04 00:28:47.000.850,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.fundo.pas</Transaction>
+    <Transaction>2023/12/04 00:28:47.000.850,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.dfm=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.fundo.dfm</Transaction>
+    <Transaction>2023/12/09 13:19:08.000.679,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/12/10 19:39:35.000.318,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/12/10 19:39:50.000.283,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\providers\providers.conversao.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/12/22 09:24:58.000.746,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/12/22 09:25:18.000.568,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\services\service.atualiza.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/12/22 09:25:18.000.568,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\services\service.atualiza.dfm=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.dfm</Transaction>
+    <Transaction>2023/12/23 00:06:01.000.631,=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas</Transaction>
+    <Transaction>2023/12/23 00:06:21.000.584,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.pas=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.login.pas</Transaction>
+    <Transaction>2023/12/23 00:06:21.000.584,C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\Unit1.dfm=C:\Users\User-J\Desktop\Projetos Delphi\Pdv\projeto\src\views\view.login.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,20 @@
+inherited ServiceConexao1: TServiceConexao1
+  Width = 648
+  inherited FDConn: TFDConnection
+    Connected = True
+  end
+  object qryFilial: TFDQuery
+    Connection = FDConn
+    SQL.Strings = (
+      'select * from filial where id = :id ')
+    Left = 240
+    Top = 48
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+end

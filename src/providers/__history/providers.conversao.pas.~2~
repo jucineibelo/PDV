@@ -1,0 +1,10 @@
+unit providers.conversao;
+
+interface
+
+type
+  TipoEstoque = (TipoCompra, TipoVenda, TipoDevolucao);
+
+implementation
+
+end.

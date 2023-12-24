@@ -1,0 +1,68 @@
+unit service.conexao;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  service.base,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.VCLUI.Wait,
+  FireDAC.Phys.FBDef,
+  FireDAC.Phys.IBBase,
+  FireDAC.Phys.FB,
+  FireDAC.Comp.UI,
+  Data.DB,
+  FireDAC.Comp.Client;
+
+type
+  TServiceConexao = class(TServiceBase)
+    FDConn: TFDConnection;
+    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    FDPhysFBDriverLink1: TFDPhysFBDriverLink;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ServiceConexao: TServiceConexao;
+
+implementation
+
+uses
+  IniFiles;
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+{$R *.dfm}
+
+procedure TServiceConexao.DataModuleCreate(Sender: TObject);
+var
+  Ini: Tinifile;
+  Path: string;
+begin
+
+  try
+    FDConn.Connected := False;
+    Ini := Tinifile.Create(ExtractFilePath(ParamStr(0)) + '\Config.ini');
+    Path := Ini.ReadString('BASE', 'BASE', 'ADM');
+    FDConn.Close;
+    FDConn.Params.Values['DataBase'] := Path;
+    FDConn.Open();
+  finally
+    Ini.DisposeOf;
+  end;
+
+end;
+
+end.
